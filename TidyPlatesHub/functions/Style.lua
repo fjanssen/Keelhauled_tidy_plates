@@ -161,13 +161,15 @@ local function StyleNameDelegate(unit)
 		end
 	elseif unit.reaction == "NEUTRAL" then
 		-- if IsUnitActive(unit) and LocalVars.StyleEnemyBarsOnActive then return "Default" end
-		if unit.threatValue > 1 then return "Default"
+		if LocalVars.OpacityFilterInactive and UnitAffectingCombat("player") and not (unit.isMarked or unit.isInCombat or unit.threatValue > 0 or unit.health < unit.healthmax or unit.type == "PLAYER") then return "NameOnly"
+		elseif unit.threatValue > 1 then return "Default"
 		elseif LocalVars.StyleHeadlineNeutral then return "NameOnly"
 		elseif IsUnitActive(unit) and LocalVars.StyleEnemyBarsOnActive then return "Default"
 		elseif LocalVars.StyleEnemyBarsOnNPC then return "Default"
 		end
 	else
-		if IsUnitActive(unit) and LocalVars.StyleEnemyBarsOnActive then return "Default"
+		if LocalVars.OpacityFilterInactive and UnitAffectingCombat("player") and not (unit.isMarked or unit.isInCombat or unit.threatValue > 0 or unit.health < unit.healthmax or unit.type == "PLAYER") then return "NameOnly"
+		elseif IsUnitActive(unit) and LocalVars.StyleEnemyBarsOnActive then return "Default"
 		elseif unit.isElite and LocalVars.StyleEnemyBarsOnElite then return "Default"
 		elseif unit.type == "PLAYER" and LocalVars.StyleEnemyBarsOnPlayers then return "Default"
 		elseif unit.type ~= "PLAYER" and LocalVars.StyleEnemyBarsOnNPC then
