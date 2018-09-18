@@ -143,13 +143,35 @@ Threat Value
 --]]
 
 
-
 local function StyleNameDelegate(unit)
 
 	if LocalVars.StyleForceBarsOnTargets and (unit.isTarget or (LocalVars.FocusAsTarget and unit.isFocus)) then return "Default" end
 	if LocalVars.StyleHeadlineOutOfCombat and (not InCombatLockdown()) then return "NameOnly" end
 	if LocalVars.StyleHeadlineMiniMobs and unit.isMini then return "NameOnly" end
 
+	if unit.reaction ~= "FRIENDLY" then
+		if LocalVars.ShowOnlyActiveDringCombat
+		and (UnitAffectingCombat("player")
+		or (LocalVars.KH_ShowGroupCombat and (UnitAffectingCombat("party1") or UnitAffectingCombat("party2") or UnitAffectingCombat("party3") or UnitAffectingCombat("party4"))))
+		and not (unit.isMarked or unit.isInCombat or unit.threatValue > 0 or unit.type == "PLAYER")
+		and not string.find(LocalVars.KH_ShowCombatWhiteOnlylist, unit.name)
+		then
+			return  "NameOnly"
+		end
+
+		-- if LocalVars.ShowOnlyActiveDringCombat and UnitAffectingCombat("player") and not (unit.isMarked or unit.isInCombat or unit.threatValue > 0 or unit.health < unit.healthmax or unit.type == "PLAYER") then return "NameOnly" end
+		-- if LocalVars.ShowOnlyActiveDringCombat then
+			-- if (UnitAffectingCombat("player") or (LocalVars.KH_ShowGroupCombat and (UnitAffectingCombat("party1") or UnitAffectingCombat("party2") or UnitAffectingCombat("party3") or UnitAffectingCombat("party4")))) and not (unit.isMarked or unit.isInCombat or unit.type == "PLAYER") then
+				-- -- if not has_value(LocalVars.KH_ShowCombatWhiteOnlylist, unit.name) then
+					-- return  "NameOnly"
+				-- -- end
+			-- end
+		-- -- elseif 
+		-- end
+
+	end
+
+	
 	-- Friendly and Hostile
 	if unit.reaction == "FRIENDLY" then
 		if IsUnitActive(unit) and LocalVars.StyleFriendlyBarsOnActive then return "Default"
@@ -161,15 +183,15 @@ local function StyleNameDelegate(unit)
 		end
 	elseif unit.reaction == "NEUTRAL" then
 		-- if IsUnitActive(unit) and LocalVars.StyleEnemyBarsOnActive then return "Default" end
-		if LocalVars.OpacityFilterInactive and UnitAffectingCombat("player") and not (unit.isMarked or unit.isInCombat or unit.threatValue > 0 or unit.health < unit.healthmax or unit.type == "PLAYER") then return "NameOnly"
-		elseif unit.threatValue > 1 then return "Default"
+		-- if LocalVars.ShowOnlyActiveDringCombat and UnitAffectingCombat("player") and not (unit.isMarked or unit.isInCombat or unit.threatValue > 0 or unit.type == "PLAYER") then return "NameOnly"
+		if unit.threatValue > 1 then return "Default"
 		elseif LocalVars.StyleHeadlineNeutral then return "NameOnly"
 		elseif IsUnitActive(unit) and LocalVars.StyleEnemyBarsOnActive then return "Default"
 		elseif LocalVars.StyleEnemyBarsOnNPC then return "Default"
 		end
 	else
-		if LocalVars.OpacityFilterInactive and UnitAffectingCombat("player") and not (unit.isMarked or unit.isInCombat or unit.threatValue > 0 or unit.health < unit.healthmax or unit.type == "PLAYER") then return "NameOnly"
-		elseif IsUnitActive(unit) and LocalVars.StyleEnemyBarsOnActive then return "Default"
+		-- if LocalVars.ShowOnlyActiveDringCombat and UnitAffectingCombat("player") and not (unit.isMarked or unit.isInCombat or unit.threatValue > 0 or unit.type == "PLAYER") then return "NameOnly"
+		if IsUnitActive(unit) and LocalVars.StyleEnemyBarsOnActive then return "Default"
 		elseif unit.isElite and LocalVars.StyleEnemyBarsOnElite then return "Default"
 		elseif unit.type == "PLAYER" and LocalVars.StyleEnemyBarsOnPlayers then return "Default"
 		elseif unit.type ~= "PLAYER" and LocalVars.StyleEnemyBarsOnNPC then

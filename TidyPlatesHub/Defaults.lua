@@ -170,6 +170,13 @@ TidyPlatesHubDefaults = {
 	ColorUnIntpellCast = { r = 0.5137243866920471, g = 0.7529395222663879, b = 0.7647042274475098, },
 	SpellCastEnableFriendly = false,
 
+	-- Keelhauled
+	---------------------------------------
+
+	ShowOnlyActiveDringCombat = true,
+	KH_ShowGroupCombat = true,
+	KH_ShowCombatWhiteOnlylist = "",
+	
 	-- Status Text
 	---------------------------------------
 	StatusTextLeft = 8,
