@@ -388,7 +388,7 @@ local function PasteSettings(panel)
 
 	SetPanelValues(panel, LocalVars)
 	OnPanelItemChange(panel)
-	PlaySound(PlaySoundKitID and "igMainMenuOptionCheckBoxOn" or 856);
+	PlaySound("igMainMenuOptionCheckBoxOn")
 end
 
 local function CopySettings(panel)
@@ -413,7 +413,7 @@ local function CopySettings(panel)
 	-- Store the panel values into the LocalVars/Cache table
 	GetPanelValues(panel, LocalVars)
 
-	PlaySound(PlaySoundKitID and "igMainMenuOptionCheckBoxOn" or 856);
+	PlaySound("igMainMenuOptionCheckBoxOn")
 end
 
 local function ResetSettings(panel)
@@ -597,8 +597,7 @@ local function CreateInterfacePanel( objectName, panelTitle, parentFrameName)
 	ReloadThemeDataButton:SetText("Reset")
 
 	ReloadThemeDataButton:SetScript("OnClick", function()
-		PlaySound(PlaySoundKitID and "igMainMenuOptionCheckBoxOn" or 856);
-		ResetSettings(panel);
+		PlaySound("igMainMenuOptionCheckBoxOn"); ResetSettings(panel);
 	end)
 
 -- [[
@@ -618,7 +617,7 @@ local function CreateInterfacePanel( objectName, panelTitle, parentFrameName)
 	end
 
 	local function OnClickBookmarkDrawer(frame)
-		PlaySound(PlaySoundKitID and "igMainMenuOptionCheckBoxOn" or 856);
+		PlaySound("igMainMenuOptionCheckBoxOn")
 
 		if not (panel.AlignmentColumn and panel.AlignmentColumn.Headings) then return end
 		local BookmarkMenu = {}

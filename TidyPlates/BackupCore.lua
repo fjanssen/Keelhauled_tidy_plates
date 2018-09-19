@@ -818,10 +818,10 @@ do
 		local name, subText, text, texture, startTime, endTime, isTradeSkill, castID, notInterruptible
 
 		if channeled then
-			name, text, texture, startTime, endTime, isTradeSkill, notInterruptible = UnitChannelInfo(unitid)
+			name, subText, text, texture, startTime, endTime, isTradeSkill, notInterruptible = UnitChannelInfo(unitid)
 			castBar:SetScript("OnUpdate", OnUpdateCastBarReverse)
 		else
-			name, text, texture, startTime, endTime, isTradeSkill, castID, notInterruptible = UnitCastingInfo(unitid)
+			name, subText, text, texture, startTime, endTime, isTradeSkill, castID, notInterruptible = UnitCastingInfo(unitid)
 			castBar:SetScript("OnUpdate", OnUpdateCastBarForward)
 		end
 

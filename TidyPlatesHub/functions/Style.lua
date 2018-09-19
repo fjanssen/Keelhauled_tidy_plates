@@ -143,6 +143,7 @@ Threat Value
 --]]
 
 
+
 local function StyleNameDelegate(unit)
 
 	if LocalVars.StyleForceBarsOnTargets and (unit.isTarget or (LocalVars.FocusAsTarget and unit.isFocus)) then return "Default" end
@@ -183,14 +184,12 @@ local function StyleNameDelegate(unit)
 		end
 	elseif unit.reaction == "NEUTRAL" then
 		-- if IsUnitActive(unit) and LocalVars.StyleEnemyBarsOnActive then return "Default" end
-		-- if LocalVars.ShowOnlyActiveDringCombat and UnitAffectingCombat("player") and not (unit.isMarked or unit.isInCombat or unit.threatValue > 0 or unit.type == "PLAYER") then return "NameOnly"
 		if unit.threatValue > 1 then return "Default"
 		elseif LocalVars.StyleHeadlineNeutral then return "NameOnly"
 		elseif IsUnitActive(unit) and LocalVars.StyleEnemyBarsOnActive then return "Default"
 		elseif LocalVars.StyleEnemyBarsOnNPC then return "Default"
 		end
 	else
-		-- if LocalVars.ShowOnlyActiveDringCombat and UnitAffectingCombat("player") and not (unit.isMarked or unit.isInCombat or unit.threatValue > 0 or unit.type == "PLAYER") then return "NameOnly"
 		if IsUnitActive(unit) and LocalVars.StyleEnemyBarsOnActive then return "Default"
 		elseif unit.isElite and LocalVars.StyleEnemyBarsOnElite then return "Default"
 		elseif unit.type == "PLAYER" and LocalVars.StyleEnemyBarsOnPlayers then return "Default"

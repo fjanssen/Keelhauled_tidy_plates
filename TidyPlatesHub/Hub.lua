@@ -387,20 +387,6 @@ local function BuildHubPanel(panel)
 
 	--]]
 
-	--------------------------------
-	-- Keelhauled
-	--------------------------------
-	panel.KeelhauledLabel, F = CreateQuickHeadingLabel(nil, "Keelhauled features", AlignmentColumn, F, 0, 5)
-
-    panel.ShowOnlyActiveDringCombat, F = CreateQuickCheckbutton(objectName.."ShowOnlyActiveDringCombat", "Only show active targets during combat", AlignmentColumn, F)
-    panel.KH_ShowGroupCombat, F = CreateQuickCheckbutton(objectName.."KH_ShowGroupCombat", "Include group member combat state", AlignmentColumn, F, 24)
-    -- panel.KH_ShowCombatWhiteOnlylist, F = CreateQuickEditbox(objectName.."KH_ShowCombatWhiteOnlylist", AlignmentColumn, F, 24)
-	-- panel.WidgetsDebuffTrackList =        CreateQuickEditbox(objectName.."KH_ShowCombatWhiteOnlylist", AlignmentColumn, panel.WidgetsDebuffListLabel, 16)
-	
-	panel.KH_ShowCombatWhiteOnlylistLabel = CreateQuickItemLabel(nil, "Always show nameplates for:", AlignmentColumn, F, 16)
-	panel.KH_ShowCombatWhiteOnlylist, F = CreateQuickEditbox(objectName.."KH_ShowCombatWhiteOnlylist", AlignmentColumn, panel.KH_ShowCombatWhiteOnlylistLabel, 16)
-
-	
 	------------------------------
 	--Widgets
 	------------------------------
@@ -452,6 +438,7 @@ local function BuildHubPanel(panel)
 	BlizzOptionsButton:SetWidth(300)
 	BlizzOptionsButton:SetText("Blizzard Nameplate Motion & Visibility...")
 	BlizzOptionsButton:SetScript("OnClick", function() InterfaceOptionsFrame_OpenToCategory(_G["InterfaceOptionsNamesPanel"]) end)
+
 
 	------------------------------
 	-- Set Sizes and Mechanics
