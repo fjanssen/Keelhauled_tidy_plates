@@ -20,13 +20,13 @@ local function UnitFilter(unit)
 	elseif LocalVars.OpacityFilterInactive then
 		
 		-- if not UnitAffectingCombat("player") then return false end
-		-- if GetUnitQuestInfo(unit) then return false end
+		if GetUnitQuestInfo(unit) then return false end
 
-		-- if unit.reaction ~= "FRIENDLY" then
-			-- if not (unit.isMarked or unit.isInCombat or unit.threatValue > 0 or unit.health < unit.healthmax or unit.type == "PLAYER") then
-				-- return true
-			-- end
-		-- end
+		if unit.reaction ~= "FRIENDLY" then
+			if not (unit.isMarked or unit.isInCombat or unit.threatValue > 0 or unit.health < unit.healthmax or unit.type == "PLAYER") then
+				return true
+			end
+		end
 	end
 end
 
